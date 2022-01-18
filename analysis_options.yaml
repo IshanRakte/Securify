@@ -28,6 +28,8 @@ linter:
     must_be_immutable: false
     use_key_in_widget_constructors: false
     undefined_indentifier: false
+    file_names: false
+    library_prefixes: false
     # avoid_print: false  # Uncomment to disable the `avoid_print` rule
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
 
