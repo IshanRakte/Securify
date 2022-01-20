@@ -116,8 +116,8 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                 width: 150,
                 decoration: BoxDecoration(
                     color: Color(0xff6C5DD3), shape: BoxShape.circle),
-                child: Icon(Icons.fingerprint_outlined,
-                    size: 110, color: Colors.white),
+                child: IconButton(
+                    color: Colors.white, onPressed: () => authenticate(), icon: Icon(Icons.fingerprint_outlined,  size: 110,),)
               ),
             ),
             SizedBox(height: 20),
