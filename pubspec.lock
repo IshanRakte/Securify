@@ -163,6 +163,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "9.2.0"
+  get:
+    dependency: "direct main"
+    description:
+      name: get
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "4.6.1"
   google_fonts:
     dependency: "direct main"
     description:
@@ -240,6 +247,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.7.0"
+  password_strength:
+    dependency: "direct main"
+    description:
+      name: password_strength
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.2.0"
   path:
     dependency: transitive
     description:

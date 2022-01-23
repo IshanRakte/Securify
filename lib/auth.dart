@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_password_manager/HomePage.dart';
 import 'package:flutter_password_manager/main.dart';
+import 'package:flutter_password_manager/widgets/bottomnavbar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:local_auth/local_auth.dart';
@@ -76,7 +77,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
 
       if (authenticated) {
         Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => PasswordHomePage()));
+            MaterialPageRoute(builder: (context) => BottomNavBar()));
       } else {
         setState(() {});
       }

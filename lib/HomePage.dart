@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_password_manager/controllers/EncryptService.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_password_manager/iconmapping.dart' as CustomIcons;
@@ -14,16 +17,27 @@ class _PasswordHomePageState extends State<PasswordHomePage> {
   Box box = Hive.box('password');
   bool longPressed = false;
   final EncryptService _encryptService = EncryptService();
+  // bool _secureText = true;
+  final servicecontroller = TextEditingController();
+  final passwordcontroller = TextEditingController();
+  final emailcontroller = TextEditingController();
+
+  // @override
+  // void dispose(){
+  //   controller.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffEAE7C6),
       appBar: AppBar(
         title: Text('Your Passwords',
             style: GoogleFonts.getFont('Inter', color: Colors.white)),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Color(0xff6C5DD3),
+        backgroundColor: Color(0xff22577E),
       ),
       body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
@@ -37,12 +51,13 @@ class _PasswordHomePageState extends State<PasswordHomePage> {
                             color: Colors.black87)));
               }
               return ListView.builder(
+                physics: BouncingScrollPhysics(),
                 itemCount: box.values.length,
                 itemBuilder: (context, index) {
                   Map data = box.getAt(index);
 
                   return Card(
-                     color: Colors.deepPurple[100],
+                    color: Color(0xff95D1CC),
                     margin: EdgeInsets.all(
                       10.0,
                     ),
@@ -70,7 +85,7 @@ class _PasswordHomePageState extends State<PasswordHomePage> {
                           overflow: TextOverflow.ellipsis,
                         ),
                         subtitle: Text(
-                           "${data['email']}",
+                          "${data['email']}",
                           style: TextStyle(
                             fontSize: 16.0,
                           ),
@@ -100,60 +115,6 @@ class _PasswordHomePageState extends State<PasswordHomePage> {
                     ),
                   );
                 },
-
-                // Padding(
-                //     padding: EdgeInsets.only(bottom: 15.0),
-                //     child: Container(
-                //       padding: EdgeInsets.symmetric(horizontal: 10.0),
-                //       height: 65,
-                //       width: double.infinity,
-                //       decoration: BoxDecoration(
-                //           color: Color(0xffEFF3FA),
-                //           borderRadius: BorderRadius.circular(8.0)),
-                //       child: Row(
-                //         //mainAxisAlignment: MainAxisAlignment.spaceAround,
-                //         children: [
-                //           // Icon(Icons.lock_outline_rounded,
-                //           //     color: Color(0xff323A82), size: 32),
-                //           //     SizedBox(width: MediaQuery.of(context).size.width/30 ,),\
-                //           CustomIcons.icons[data['type']] ??
-                //         Icon(
-                //           Icons.lock,
-                //           size: 32.0,
-                //         ),
-                //           Column(
-                //             //mainAxisAlignment: MainAxisAlignment.start,
-                //             children: [
-                //               SizedBox(height: 11,),
-                //             Text('${data["type"]}',
-                //                 style: GoogleFonts.getFont('Inter',
-                //                     color: Color(0xff323A82), fontSize: 18)),
-                //             Text('${data["email"]}',
-                //                 style: GoogleFonts.getFont('Inter',
-                //                     color: Color(0xff323A82), fontSize: 14)),
-                //           ]),
-                //           SizedBox(width: MediaQuery.of(context).size.width/3,),
-                //           Row(
-                //             mainAxisAlignment: MainAxisAlignment.end,
-                //             children: [
-                //             InkWell(
-                //                 onTap: () => _encryptService.copyToClipboard(
-                //                     data['password'], context),
-                //                 child: Icon(
-                //                   Icons.copy_rounded,
-                //                   color: Color(0xff6C5DD3),
-                //                   size: 28,
-                //                 )),
-                //             SizedBox(width: 15),
-                //             InkWell(
-                //                 onTap: () =>
-                //                     modalAlertDelete(index, data['type']),
-                //                 child: Icon(Icons.delete_outline_outlined,
-                //                     color: Colors.red, size: 32)),
-                //           ])
-                //         ],
-                //       ),
-                //     ));
               );
             },
           )),
@@ -161,10 +122,10 @@ class _PasswordHomePageState extends State<PasswordHomePage> {
         child: Icon(Icons.add, color: Colors.white),
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-        backgroundColor: Color(0xff6C5DD3),
+        backgroundColor: Color(0xff22577E),
         onPressed: insertDB,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
     );
   }
 
@@ -207,8 +168,10 @@ class _PasswordHomePageState extends State<PasswordHomePage> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         TextFormField(
+                          //controller: servicecontroller,
                           textCapitalization: TextCapitalization.sentences,
                           decoration: InputDecoration(
+                              icon: Icon(FontAwesomeIcons.google),
                               border: OutlineInputBorder(),
                               labelText: 'Service',
                               hintText: 'Google'),
@@ -224,8 +187,10 @@ class _PasswordHomePageState extends State<PasswordHomePage> {
                         ),
                         SizedBox(height: 15.0),
                         TextFormField(
+                          //controller: emailcontroller,
                           textCapitalization: TextCapitalization.sentences,
                           decoration: InputDecoration(
+                            icon: Icon(Icons.person),
                             border: OutlineInputBorder(),
                             labelText: 'Username/Email/Phone',
                           ),
@@ -241,9 +206,21 @@ class _PasswordHomePageState extends State<PasswordHomePage> {
                         ),
                         SizedBox(height: 15.0),
                         TextFormField(
+                          //controller: passwordcontroller,
                           textCapitalization: TextCapitalization.sentences,
                           obscureText: true,
                           decoration: InputDecoration(
+                            icon: Icon(
+                              Icons.password,
+                            ),
+                            // suffixIcon: IconButton(
+                            //   icon: Icon(Icons.remove_red_eye_outlined),
+                            //   onPressed: () {
+                            //     setState(() {
+                            //       _secureText = !_secureText;
+                            //     });
+                            //   },
+                            // ),
                             border: OutlineInputBorder(),
                             labelText: 'Password',
                           ),
@@ -259,36 +236,30 @@ class _PasswordHomePageState extends State<PasswordHomePage> {
                         ),
                         SizedBox(height: 15.0),
                         ElevatedButton(
-                          style: ButtonStyle(
-                              padding: MaterialStateProperty.all(
-                                  EdgeInsets.symmetric(
-                                      horizontal: 50.0, vertical: 13.0)),
-                              backgroundColor:
-                                  MaterialStateProperty.all(Color(0xff6C5DD3))),
-                          child: Text('Save',
-                              style:
-                                  GoogleFonts.getFont('Inter', fontSize: 18)),
-                          onPressed: () {
-                            // Encrypt
-                            password = _encryptService.encrypt(password);
-
-                            // Insert into DB
-                            Box box = Hive.box('password');
-
-                            //insert
-                            var value = {
-                              'type': type,
-                              'email': email,
-                              'password': password
-                            };
-
-                            box.add(value);
-
-                            Navigator.pop(context);
-
-                            setState(() {});
-                          },
-                        )
+                            style: ButtonStyle(
+                                padding: MaterialStateProperty.all(
+                                    EdgeInsets.symmetric(
+                                        horizontal: 50.0, vertical: 13.0)),
+                                backgroundColor: MaterialStateProperty.all(
+                                    Color(0xff22577E),)),
+                            child: Text('Save',
+                                style:
+                                    GoogleFonts.getFont('Inter', fontSize: 18)),
+                            onPressed: () {
+                              // Encrypt
+                              password = _encryptService.encrypt(password);
+                              // Insert into DB
+                              Box box = Hive.box('password');
+                              //insert
+                              var value = {
+                                'type': type,
+                                'email': email,
+                                'password': password
+                              };
+                              box.add(value);
+                              Navigator.pop(context);
+                              setState(() {});
+                            })
                       ],
                     ),
                   ),

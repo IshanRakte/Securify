@@ -12,4 +12,5 @@ const Map<String, Icon> icons = {
   'Behance': Icon(FontAwesomeIcons.behance, color: Colors.black,size: 32,),
   'Linkedin': Icon(FontAwesomeIcons.linkedin, color: Color(0xff0077B5),size: 32,),
   'LinkedIn': Icon(FontAwesomeIcons.linkedin, color: Color(0xff0077B5),size: 32,),
+  'Discord': Icon(FontAwesomeIcons.discord, color: Color(0xff738ADB),size: 32,),
 };
