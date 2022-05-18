@@ -91,11 +91,12 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffEAE7C6),
       appBar: AppBar(
-        title: Text('Authentication', style: GoogleFonts.getFont('Inter')),
+        title: Text('Authentication', style: GoogleFonts.getFont('Inter'),),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xff22577E),
       ),
       body: Center(
         child: Column(
@@ -103,20 +104,20 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
           children: [
             Text('Fingerprint',
                 style: GoogleFonts.getFont('Inter',
-                    fontSize: 24, color: Color(0xff6C5DD3))),
+                    fontSize: 24, color: Color(0xff22577E))),
             SizedBox(height: 20),
             Container(
               padding: EdgeInsets.all(18.0),
               height: 190,
               width: 190,
               decoration: BoxDecoration(
-                  color: Color(0xff6C5DD3).withOpacity(0.3),
+                  color: Color(0xff22577E).withOpacity(0.3),
                   shape: BoxShape.circle),
               child: Container(
                 height: 150,
                 width: 150,
                 decoration: BoxDecoration(
-                    color: Color(0xff6C5DD3), shape: BoxShape.circle),
+                    color: Color(0xff22577E), shape: BoxShape.circle),
                 child: IconButton(
                     color: Colors.white, onPressed: () => authenticate(), icon: Icon(Icons.fingerprint_outlined,  size: 110,),)
               ),
@@ -127,7 +128,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
             //       MaterialPageRoute(builder: (_) => AuthenticationPinPage())),
             //   child: Text('Try again PIN',
             //       style: GoogleFonts.getFont('Inter',
-            //           fontSize: 18, color: Color(0xff6C5DD3))),
+            //           fontSize: 18, color: Color(0xff22577E))),
             // ),
             if (!authenticated)
               Text('Oh ! You Need to authenticate to move forward',
@@ -137,7 +138,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
               onPressed: () => authenticate(),
               child: Text('Try again Biometrics',
                   style: GoogleFonts.getFont('Inter',
-                      fontSize: 18, color: Color(0xff6C5DD3))),
+                      fontSize: 18, color: Color(0xff22577E))),
             ),
           ],
         ),

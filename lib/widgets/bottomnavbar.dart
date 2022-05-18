@@ -13,14 +13,14 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       initialIndex: 1,
       child: Scaffold(
         body: TabBarView(
           children: <Widget>[
             RandomPassword(),
             PasswordHomePage(),
-            PasswordStrength()
+            // PasswordStrength()
           ],
         ),
         bottomNavigationBar: Container(
@@ -49,13 +49,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 ),
                 text: 'Your Passwords',
               ),
-              Tab(
-                icon: FaIcon(
-                  FontAwesomeIcons.dumbbell,
-                  size: 24.0,
-                ),
-                text: 'Password Strength',
-              ),
+              // Tab(
+              //   icon: FaIcon(
+              //     FontAwesomeIcons.dumbbell,
+              //     size: 24.0,
+              //   ),
+              //   text: 'Password Strength',
+              // ),
             ],
           ),
         ),

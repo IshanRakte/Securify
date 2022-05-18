@@ -70,7 +70,7 @@ class _PasswordHomePageState extends State<PasswordHomePage> {
                           horizontal: 20.0,
                         ),
                         // tileColor: Color(0xff1c1c1c),
-                        leading: CustomIcons.icons[data['type']] ??
+                        leading: CustomIcons.icons[data['type'.trim()]] ??
                             Icon(
                               Icons.lock,
                               size: 32.0,
