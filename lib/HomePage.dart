@@ -46,7 +46,7 @@ class _PasswordHomePageState extends State<PasswordHomePage> {
             builder: (context, Box box, _) {
               if (box.values.isEmpty) {
                 return Center(
-                    child: Text('No Value!',
+                    child: Text('No Passwords Saved!',
                         style: GoogleFonts.getFont('Inter',
                             color: Colors.black87)));
               }

@@ -1,4 +1,4 @@
-package com.example.flutter_password_manager
+package com.sprint.securify
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 import io.flutter.embedding.engine.FlutterEngine
